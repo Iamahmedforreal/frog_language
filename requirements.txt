@@ -1,0 +1,19 @@
+# Forg Language Compiler Dependencies
+
+# Core LLVM bindings for compilation and JIT execution
+llvmlite>=0.40.0
+
+# Development and testing dependencies (optional)
+# Uncomment the following lines if you want to use them:
+
+# pytest>=7.0.0              # Alternative test framework
+# pytest-cov>=4.0.0          # Test coverage reporting
+# black>=22.0.0               # Code formatting
+# flake8>=5.0.0               # Linting
+# mypy>=1.0.0                 # Type checking
+# sphinx>=5.0.0               # Documentation generation
+# sphinx-rtd-theme>=1.0.0     # Documentation theme
+
+# Performance profiling (optional)
+# memory-profiler>=0.60.0     # Memory usage profiling
+# line-profiler>=4.0.0        # Line-by-line profiling

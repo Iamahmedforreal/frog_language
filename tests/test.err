@@ -1,0 +1,16 @@
+fn main() -> int {
+    
+let r: int = 0;
+let c: int = 1;
+
+while (c <= 10) {
+    if (c % 2 == 0) {
+        r = r + c * 2;
+    } else {
+        r = r + c * 3;
+    }
+    c = c + 1;  
+
+
+return r;
+}

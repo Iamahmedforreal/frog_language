@@ -1,0 +1,17 @@
+fn factorial(n: int) -> int {
+    if n <= 1 {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+fn main() -> int {
+    let n: int = 5;
+    let result: int = factorial(n);
+    
+    printf("Factorial of %i is %i\n", n, result);
+    
+    return result;
+}
+

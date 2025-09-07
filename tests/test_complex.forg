@@ -1,0 +1,62 @@
+fn fibonacci(n: int) -> int {
+    if n <= 1 {
+        return n;
+    }
+    
+    let a: int = 0;
+    let b: int = 1;
+    let temp: int = 0;
+    
+    for (let i: int = 2; i <= n; i = i + 1) {
+        temp = a + b;
+        a = b;
+        b = temp;
+    }
+    
+    return b;
+}
+
+fn is_prime(n: int) -> int {
+    if n <= 1 {
+        return 0;
+    }
+    
+    if n <= 3 {
+        return 1;
+    }
+    
+    if n % 2 == 0 {
+        return 0;
+    }
+    
+    for (let i: int = 3; i * i <= n; i = i + 2) {
+        if n % i == 0 {
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+fn main() -> int {
+    printf("Fibonacci and Prime Number Demo\n");
+    printf("===============================\n");
+    
+    // Calculate first 10 Fibonacci numbers
+    printf("First 10 Fibonacci numbers:\n");
+    for (let i: int = 0; i < 10; i = i + 1) {
+        let fib: int = fibonacci(i);
+        printf("F(%i) = %i\n", i, fib);
+    }
+    
+    printf("\nPrime numbers up to 20:\n");
+    for (let i: int = 2; i <= 20; i = i + 1) {
+        if is_prime(i) == 1 {
+            printf("%i ", i);
+        }
+    }
+    printf("\n");
+    
+    return 0;
+}
+

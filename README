@@ -1,0 +1,276 @@
+# Forg Language Compiler
+
+A modern, custom programming language compiler that compiles Forg source code to LLVM IR with JIT execution capabilities.
+
+## 🚀 Features
+
+- **Complete Compiler Pipeline**: Lexer → Parser → Compiler → JIT Execution
+- **LLVM Backend**: Generates optimized LLVM IR for high performance
+- **Rich Language Features**: Functions, variables, control flow, arithmetic operations
+- **Comprehensive Error Handling**: Detailed error messages with suggestions
+- **Debug Support**: Extensive debugging and profiling capabilities
+- **Test Suite**: Comprehensive unit and integration tests
+- **Command-Line Interface**: Flexible CLI with multiple options
+
+## 📋 Language Features
+
+### Data Types
+- `int`: 32-bit signed integers
+- `float`: Single-precision floating-point numbers
+- `bool`: Boolean values (`true`/`false`)
+- `str`: String literals
+- `void`: For functions with no return value
+
+### Control Structures
+- **Conditionals**: `if`/`else` statements
+- **Loops**: `while` and `for` loops with `break`/`continue`
+- **Functions**: Function declarations with parameters and return types
+
+### Operators
+- **Arithmetic**: `+`, `-`, `*`, `/`, `%`, `^` (power)
+- **Comparison**: `<`, `>`, `<=`, `>=`, `==`, `!=`
+- **Assignment**: `=`
+
+### Example Program
+```forg
+fn factorial(n: int) -> int {
+    if n <= 1 {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+fn main() -> int {
+    let result: int = factorial(5);
+    printf("Factorial of 5 is %i\n", result);
+    return result;
+}
+```
+
+## 🛠 Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- LLVM (automatically handled by llvmlite)
+
+### Quick Setup
+```bash
+# Clone or download the project
+cd compiler
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Or install manually
+pip install llvmlite
+```
+
+### Development Setup
+```bash
+# Install with development dependencies
+make dev-setup
+
+# Or manually
+pip install llvmlite pytest black flake8 mypy
+```
+
+## 🚀 Usage
+
+### Basic Usage
+```bash
+# Compile and run a Forg program
+python main.py tests/test3.forg
+
+# Compile without running
+python main.py --no-run tests/test1.forg
+
+# Enable all debug output
+python main.py --debug-all tests/test2.forg
+```
+
+### Command-Line Options
+```bash
+# Show help
+python main.py --help
+
+# Debug options
+python main.py --debug-lexer tests/test1.forg    # Show lexer tokens
+python main.py --debug-parser tests/test1.forg   # Save AST to debug/ast.json
+python main.py --debug-compiler tests/test1.forg # Save IR to debug/ir.ll
+python main.py --debug-all tests/test1.forg      # Enable all debug output
+
+# Output control
+python main.py --verbose tests/test1.forg        # Verbose output
+python main.py --quiet tests/test1.forg          # Minimal output
+python main.py --benchmark tests/test1.forg      # Show performance metrics
+
+# Optimization
+python main.py -O2 tests/test1.forg              # Enable optimization level 2
+```
+
+### Using Make Commands
+```bash
+make help           # Show all available commands
+make run            # Run with default test file
+make debug          # Run with all debug output
+make test           # Run all tests
+make clean          # Clean generated files
+make benchmark      # Run performance benchmarks
+```
+
+## 🧪 Testing
+
+### Run All Tests
+```bash
+# Using the test runner
+python test_runner.py
+
+# Using make
+make test
+```
+
+### Test Categories
+- **Unit Tests**: Test individual components (lexer, parser, compiler)
+- **Integration Tests**: Test complete compilation pipeline
+- **Performance Tests**: Benchmark compiler performance
+- **File Tests**: Test existing .forg files in the tests/ directory
+
+### Creating New Tests
+```bash
+# Create a new test file template
+make new-test
+
+# Add your test code to tests/test_<name>.forg
+```
+
+## 📁 Project Structure
+
+```
+compiler/
+├── main.py              # Main entry point with CLI
+├── lexer.py             # Lexical analyzer
+├── parser.py            # Syntax analyzer  
+├── compiler.py          # LLVM IR generator
+├── AST.py              # Abstract Syntax Tree definitions
+├── custome_token.py    # Token definitions
+├── Envorment.py        # Symbol table/environment
+├── config.py           # Configuration management
+├── error_handler.py    # Error handling system
+├── test_runner.py      # Comprehensive test suite
+├── requirements.txt    # Python dependencies
+├── Makefile           # Development commands
+├── README             # This file
+├── tests/             # Test Forg programs
+│   ├── test1.forg     # Basic arithmetic
+│   ├── test2.forg     # Conditionals
+│   ├── test3.forg     # Loops
+│   └── test4.forg     # Functions and loops
+├── debug/             # Debug output directory
+│   ├── ast.json       # AST debug output
+│   └── ir.ll          # LLVM IR debug output
+└── output/            # Compiled output directory
+```
+
+## 🔧 Development
+
+### Code Quality
+```bash
+make lint              # Run linting
+make format            # Format code
+make test              # Run tests
+```
+
+### Debugging
+The compiler provides extensive debugging capabilities:
+
+1. **Lexer Debug**: Shows all tokens generated
+2. **Parser Debug**: Saves AST as JSON
+3. **Compiler Debug**: Saves LLVM IR code
+4. **Execution Debug**: Shows timing and performance metrics
+
+### Adding New Features
+
+1. **Language Features**: Modify `lexer.py`, `parser.py`, and `AST.py`
+2. **Code Generation**: Update `compiler.py`
+3. **Error Handling**: Use the `error_handler` module
+4. **Tests**: Add tests to `test_runner.py`
+
+## 📊 Performance
+
+The compiler is designed for performance:
+- **Fast Lexing**: Processes thousands of tokens per second
+- **Efficient Parsing**: Recursive descent parser with error recovery
+- **Optimized Code Generation**: Leverages LLVM's optimization passes
+- **JIT Execution**: Near-native performance through LLVM's JIT compiler
+
+### Benchmarking
+```bash
+# Run performance benchmarks
+make benchmark
+
+# Profile specific files
+python main.py --benchmark tests/test4.forg
+```
+
+## 🐛 Error Handling
+
+The compiler provides comprehensive error reporting:
+- **Lexical Errors**: Invalid tokens, malformed numbers
+- **Syntax Errors**: Invalid grammar, missing tokens
+- **Semantic Errors**: Type mismatches, undefined variables
+- **Runtime Errors**: Execution failures
+
+Each error includes:
+- Error type and description
+- Line and column information
+- Helpful suggestions for fixes
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
+
+### Development Guidelines
+- Follow PEP 8 style guidelines
+- Add comprehensive tests
+- Document new features
+- Use type hints
+- Handle errors gracefully
+
+## 📚 Examples
+
+See the `tests/` directory for example Forg programs:
+- `test1.forg`: Basic arithmetic and variables
+- `test2.forg`: Conditional statements
+- `test3.forg`: While loops and printf
+- `test4.forg`: For loops with break statements
+
+## 🔮 Future Enhancements
+
+- [ ] Arrays and data structures
+- [ ] More built-in functions
+- [ ] Module system and imports
+- [ ] Garbage collection
+- [ ] Standard library
+- [ ] IDE integration
+- [ ] Debugger support
+- [ ] Cross-compilation targets
+
+## 📄 License
+
+This project is open source. Feel free to use, modify, and distribute.
+
+## 🙏 Acknowledgments
+
+- Built with [llvmlite](https://llvmlite.pydata.org/) for LLVM integration
+- Inspired by modern compiler design principles
+- Thanks to the LLVM project for excellent infrastructure
+
+---
+
+**Happy coding with Forg! 🎉**
+

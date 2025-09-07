@@ -1,0 +1,10 @@
+fn main() -> int {
+    let base: int = 2;
+    let exponent: int = 3;
+    let result: int = base ^ exponent;
+    
+    printf("2^3 = %i\n", result);
+    
+    return result;
+}
+
